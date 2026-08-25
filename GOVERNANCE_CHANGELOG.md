@@ -56,3 +56,28 @@ Todo avance técnico o de gobierno aprobado debe quedar reflejado en:
 3. Pull Requests y commits, cuando el avance implique cambios versionables.
 
 La auditoría original se conserva como línea base histórica; las remediaciones posteriores se documentan sin sobrescribir el estado observado originalmente.
+
+### Hito 3 — Inventario verificado de checks CI
+
+Antes de crear Rulesets específicos de CI se verificaron los pipelines reales y sus últimas ejecuciones observadas en `main`.
+
+Checks confirmados:
+
+- `GS-ContractOps`: `Lint, Typecheck y Build` — ya exigido por su Ruleset específico.
+- `gutierrez-systems-web`: `validar` — instala dependencias, ejecuta lint y build; ejecución observada exitosa.
+- `gs-document-verification`: `Frontend` y `Backend` — ambos jobs observados exitosos.
+- `eminser-cierre-nomina`: `validar` — lint, build y pruebas; ejecución observada exitosa.
+
+Repositorios sin CI versionado observado durante la auditoría:
+
+- `portal-prorroga-dosquebradas`;
+- `gs-catalogo-interactivo`.
+
+Decisión de implementación:
+
+1. Mantener el Ruleset corporativo base para todos los repositorios.
+2. Mantener el Ruleset específico existente de `GS-ContractOps`.
+3. Crear un Ruleset específico de CI para `gutierrez-systems-web` y `eminser-cierre-nomina`, exigiendo `validar`.
+4. Crear un Ruleset específico de CI para `gs-document-verification`, exigiendo `Frontend` y `Backend`.
+5. Exigir que la rama del PR esté actualizada antes del merge en estos Rulesets específicos.
+6. No exigir checks inexistentes a Portal, Catálogo u otros repositorios sin CI validado.
