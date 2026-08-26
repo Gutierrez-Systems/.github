@@ -101,8 +101,17 @@ Estado verificado mediante API de GitHub:
 - política strict: activada, por lo que la rama del PR debe estar actualizada antes del merge;
 - bypass: ninguno.
 
-Hallazgo de verificación:
+Hallazgo de verificación inicial:
 
-El Ruleset conserva además una regla `deletion`, redundante con `GS - Protección base de main - Corporativo`. No introduce una brecha de seguridad, pero debe retirarse del Ruleset específico para mantener la separación de responsabilidades acordada: protección base en el Ruleset corporativo y CI en los Rulesets específicos.
+El Ruleset conservaba una regla `deletion`, redundante con `GS - Protección base de main - Corporativo`. No introducía una brecha de seguridad, pero no coincidía con la separación de responsabilidades acordada.
 
-Estado del hito: **activo y funcional, pendiente de limpieza de la regla redundante `deletion` antes de cierre definitivo**.
+Corrección aprobada y verificada:
+
+- se retiró la regla redundante `deletion`;
+- la API de GitHub confirma que el Ruleset específico contiene únicamente `required_status_checks`;
+- el contexto obligatorio sigue siendo `validar`;
+- `strict_required_status_checks_policy` permanece en `true`;
+- bypass permanece vacío;
+- enforcement permanece `active`.
+
+Estado del hito: **cerrado y conforme al diseño corporativo**.
