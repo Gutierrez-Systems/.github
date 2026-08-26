@@ -26,7 +26,7 @@ Aprobación humana recibida e implementación realizada en la rama:
 
 `chore/reproducibilidad-ci-20260825`
 
-### Cambios permanentes preparados
+### Cambios permanentes
 
 - `package.json`:
   - `googleapis`: `176.0.0`;
@@ -53,7 +53,7 @@ Resultados:
 - `npm run build`: success;
 - npm reportó 0 vulnerabilidades en la resolución/instalación observada.
 
-El workflow auxiliar fue retirado después de la validación. El diff final contra `main` contiene únicamente:
+El workflow auxiliar fue retirado después de la validación. El diff final contra `main` contenía únicamente:
 
 - `package.json`;
 - `package-lock.json`.
@@ -64,29 +64,32 @@ Durante una validación previa se confirmó que `npm run lint` falla antes de an
 
 Este hallazgo **no se corrige dentro del Subhito A** porque requiere una decisión/aprobación separada antes de construir el CI v1.
 
-### Estado del Pull Request
+### Cierre del Pull Request
 
 PR #9: `chore: hacer reproducibles las dependencias`.
 
-Verificación realizada:
+Verificación posterior al merge:
 
-- estado: `open`;
-- draft: `false`;
-- mergeable: `true`;
+- estado: `closed`;
+- merged: `true`;
 - base: `main`;
 - head: `chore/reproducibilidad-ci-20260825`;
 - head SHA: `16566ebd355c9a5fcca09be9ce2310718f5387d9`;
-- archivos cambiados: únicamente `package.json` y `package-lock.json`;
-- alcance: conforme con el Subhito A aprobado;
-- merge: pendiente de control humano.
+- merge commit: `90b4abd50d425374e2d55a1a55ee5277128e2998`;
+- merged at: `2026-08-26T03:40:21Z`;
+- archivos del PR: únicamente `package.json` y `package-lock.json`;
+- `main/package.json` verificado con dependencias fijadas y script `typecheck`;
+- `main/package-lock.json` verificado con `lockfileVersion: 3`.
 
-Estado del Subhito A: **implementado, validado y abierto en PR #9; pendiente de merge humano**.
+Estado del Subhito A: **CERRADO Y CONFORME**.
+
+Trazabilidad: GitHub ✅ · Notion ✅.
 
 ## Siguiente secuencia
 
 ### Subhito B1 — Configuración ESLint
 
-Pendiente de aprobación posterior: incorporar una configuración ESLint compatible con Next.js 16 / ESLint 9 y validar `npm run lint`.
+Pendiente de aprobación: incorporar una configuración ESLint compatible con Next.js 16 / ESLint 9 y validar `npm run lint`.
 
 ### Subhito B2 — CI v1
 
