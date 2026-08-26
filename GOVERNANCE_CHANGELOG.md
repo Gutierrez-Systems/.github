@@ -231,4 +231,24 @@ Pasos verificados exitosos:
 
 El PDF real no se incorporó al repositorio ni fue requerido por GitHub Actions. Las pruebas dependientes de dicho PDF conservan su comportamiento de omisión cuando el archivo local no está disponible.
 
-Estado: **CI v1 implementado y validado en PR; pendiente de merge humano y posterior Ruleset específico que exija `Validar Python`**.
+El PR #8 fue fusionado humanamente y el workflow quedó incorporado a `main`. La ejecución sobre el merge commit `bcbbd76050187aff746c98775e9ff56229c6082c` (run `32920650357`) concluyó `success`, con el job `Validar Python` exitoso.
+
+Estado: **CI v1 incorporado y validado en `main`**.
+
+### Hito 10 — Aprobación del Ruleset CI específico de `gs-catalogo-interactivo`
+
+Aprobación humana recibida para crear el Ruleset:
+
+`GS - CI obligatorio - catalogo interactivo`
+
+Configuración aprobada:
+
+- repositorio: únicamente `gs-catalogo-interactivo`;
+- target branch: default branch;
+- `Require status checks to pass`: activado;
+- `Require branches to be up to date before merging`: activado;
+- required check: `Validar Python`;
+- bypass: ninguno;
+- sin reglas redundantes de deletion, force push ni PR, ya cubiertas por el Ruleset corporativo base.
+
+Estado: **aprobado; pendiente de creación manual en GitHub y verificación posterior por API**.
