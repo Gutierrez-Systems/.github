@@ -30,17 +30,18 @@ Alcance aprobado:
 
 Run: `32934177587`.
 
-Job observado: `Validar Portal`.
+Job/check: `Validar Portal`.
 
-Estado observado durante la ejecución:
+Resultado final:
 
 - `npm ci`: success;
 - `npm run lint`: success;
 - `npm run typecheck`: success;
-- `npm run build`: in_progress.
+- `npm run build`: success;
+- job completo: `completed / success`.
 
 ## Estado
 
-**Subhito B2 en validación.** No se considera cerrado ni conforme hasta que el paso Build y el job completo concluyan en `success`.
+**Subhito B2 implementado y validado en PR #11.** Pendiente únicamente de merge humano y posterior verificación en `main`.
 
-No se ha realizado merge ni creado Ruleset específico.
+No se ha creado todavía Ruleset específico.
