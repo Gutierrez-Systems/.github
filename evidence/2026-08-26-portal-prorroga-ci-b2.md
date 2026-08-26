@@ -40,8 +40,31 @@ Resultado final:
 - `npm run build`: success;
 - job completo: `completed / success`.
 
+## Merge humano y validación en main
+
+PR #11 fusionado humanamente.
+
+Verificación posterior al merge:
+
+- estado PR: `closed`;
+- merged: `true`;
+- merge commit: `3a7551a0e3a8df18ac7adeb3d030ae98080f04f5`;
+- merged at: `2026-08-26T05:32:08Z`;
+- `.github/workflows/ci.yml` verificado en `main`;
+- workflow: `CI`;
+- job/check estable: `Validar Portal`;
+- run post-merge sobre `main`: `32934421336`;
+- evento: `push`;
+- `npm ci`: success;
+- `npm run lint`: success;
+- `npm run typecheck`: success;
+- `npm run build`: success;
+- job completo: `completed / success`.
+
 ## Estado
 
-**Subhito B2 implementado y validado en PR #11.** Pendiente únicamente de merge humano y posterior verificación en `main`.
+**Subhito B2 — CERRADO Y CONFORME.**
 
-No se ha creado todavía Ruleset específico.
+CI v1 ya está incorporado y validado en `main`.
+
+Siguiente hito propuesto: **Subhito C — Ruleset CI obligatorio para `portal-prorroga-dosquebradas`**, exigiendo el check `Validar Portal` y rama actualizada antes del merge. Pendiente de aprobación humana.
