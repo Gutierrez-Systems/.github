@@ -81,3 +81,28 @@ Decisión de implementación:
 4. Crear un Ruleset específico de CI para `gs-document-verification`, exigiendo `Frontend` y `Backend`.
 5. Exigir que la rama del PR esté actualizada antes del merge en estos Rulesets específicos.
 6. No exigir checks inexistentes a Portal, Catálogo u otros repositorios sin CI validado.
+
+### Hito 4 — Activación de `GS - CI obligatorio - validar`
+
+Se creó y activó el Ruleset organizacional:
+
+`GS - CI obligatorio - validar`
+
+Repositorios objetivo:
+
+- `gutierrez-systems-web`;
+- `eminser-cierre-nomina`.
+
+Estado verificado mediante API de GitHub:
+
+- enforcement: `active`;
+- rama objetivo: default branch;
+- check obligatorio: `validar`;
+- política strict: activada, por lo que la rama del PR debe estar actualizada antes del merge;
+- bypass: ninguno.
+
+Hallazgo de verificación:
+
+El Ruleset conserva además una regla `deletion`, redundante con `GS - Protección base de main - Corporativo`. No introduce una brecha de seguridad, pero debe retirarse del Ruleset específico para mantener la separación de responsabilidades acordada: protección base en el Ruleset corporativo y CI en los Rulesets específicos.
+
+Estado del hito: **activo y funcional, pendiente de limpieza de la regla redundante `deletion` antes de cierre definitivo**.
