@@ -24,23 +24,29 @@ Pasos observados:
 
 El workflow temporal fue retirado después de validar.
 
-Comparación final contra `main`:
+Comparación final contra `main` antes del merge:
 
 - únicamente `eslint.config.mjs`;
 - 14 líneas añadidas;
 - ningún cambio funcional adicional.
 
-## Pull Request
+## Pull Request y cierre
 
 PR #10: `chore: configurar eslint para Next.js 16`.
 
-- estado al abrir: `open`;
+Verificación posterior al merge:
+
+- estado: `closed`;
+- merged: `true`;
 - base: `main`;
 - head: `chore/eslint-config-next16-20260826`;
 - head SHA: `31b9492b148adcf19b0f2bf2502d2ba7e309f82d`;
-- changed files: 1;
-- archivo: `eslint.config.mjs`.
+- merge commit: `c3e3ca96f11e9d14b2f010839f065d5aa7a9a949`;
+- merged at: `2026-08-26T05:20:39Z`;
+- archivos cambiados: 1;
+- adiciones: 14;
+- `main/eslint.config.mjs` verificado después del merge.
 
-Estado del Subhito B1: **implementado, validado y abierto en PR #10; pendiente de merge humano**.
+Estado del Subhito B1: **CERRADO Y CONFORME**.
 
-Siguiente paso solo después del merge y verificación en `main`: **Subhito B2 — CI v1 (`Validar Portal`)**.
+Siguiente paso propuesto: **Subhito B2 — CI v1 (`Validar Portal`)**, pendiente de aprobación humana.
