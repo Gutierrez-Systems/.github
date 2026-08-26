@@ -194,7 +194,7 @@ Hallazgos verificados:
 - el README actual es mínimo;
 - `docs/fases/fase-1c-extraccion-nativa.md` conserva un estado documental anterior a la implementación y requiere corrección posterior.
 
-Diseño CI v1 propuesto, pendiente de aprobación humana:
+Diseño CI v1 aprobado:
 
 1. workflow `CI`;
 2. check estable `Validar Python`;
@@ -204,6 +204,31 @@ Diseño CI v1 propuesto, pendiente de aprobación humana:
 6. `python -m compileall -q src pruebas`;
 7. `python -m unittest discover -s pruebas -p "test_*.py"`.
 
-Exclusiones deliberadas de la primera iteración: Ruff, mypy, CodeQL, cobertura, OCR, IA y uso del PDF real en GitHub Actions. No se convertirán en gates hasta existir una configuración técnica validada.
+Exclusiones deliberadas de la primera iteración: Ruff, mypy, CodeQL, cobertura, OCR, IA y uso del PDF real en GitHub Actions.
 
-Estado: **auditoría cerrada; diseño CI v1 pendiente de aprobación humana**.
+### Hito 9 — Implementación y validación CI v1 de `gs-catalogo-interactivo`
+
+La implementación aprobada se realizó sin cambios directos sobre `main`.
+
+Evidencia:
+
+- rama: `ci/catalogo-python-v1-20260825`;
+- workflow creado: `.github/workflows/ci.yml`;
+- PR del producto: #8, `ci: agregar validación Python v1`;
+- commit de implementación: `d7a1a572ae259b9aef0effbb689c685c7a3f60d9`;
+- workflow run: `32920412880`;
+- job/check: `Validar Python`;
+- conclusión: `success`.
+
+Pasos verificados exitosos:
+
+- checkout del repositorio;
+- configuración de Python 3.12.10;
+- instalación de dependencias;
+- `python -m pip check`;
+- compilación de `src` y `pruebas`;
+- ejecución de la suite `unittest`.
+
+El PDF real no se incorporó al repositorio ni fue requerido por GitHub Actions. Las pruebas dependientes de dicho PDF conservan su comportamiento de omisión cuando el archivo local no está disponible.
+
+Estado: **CI v1 implementado y validado en PR; pendiente de merge humano y posterior Ruleset específico que exija `Validar Python`**.
