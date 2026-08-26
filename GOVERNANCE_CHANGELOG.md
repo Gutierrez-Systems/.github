@@ -174,3 +174,36 @@ Implicaciones:
 - `GS-ContractOps` y `gs-catalogo-interactivo` deben tratarse como productos activos prioritarios dentro del frente de ingeniería.
 
 Estado de clasificación: **producto activo confirmado**.
+
+### Hito 8 — Auditoría CI de `gs-catalogo-interactivo`
+
+Se completó una auditoría técnica en modo solo lectura antes de diseñar cualquier gate obligatorio.
+
+Hallazgos verificados:
+
+- stack principal: Python;
+- entorno histórico aprobado: Python 3.12.10;
+- dependencia fijada: `PyMuPDF==1.28.2`;
+- código: `src/extraccion_nativa/`;
+- pruebas: suite `unittest` bajo `pruebas/`;
+- el PDF real vive en `local/entrada/` y `local/` está excluido de Git;
+- las pruebas dependientes del PDF real se omiten automáticamente cuando el archivo no existe;
+- existen pruebas sintéticas que sí pueden ejecutarse en CI;
+- no existe `.github/` ni workflow CI versionado en el producto;
+- `main` está protegida por el Ruleset corporativo base, pero no existe Ruleset CI específico;
+- el README actual es mínimo;
+- `docs/fases/fase-1c-extraccion-nativa.md` conserva un estado documental anterior a la implementación y requiere corrección posterior.
+
+Diseño CI v1 propuesto, pendiente de aprobación humana:
+
+1. workflow `CI`;
+2. check estable `Validar Python`;
+3. Python 3.12.10;
+4. instalación desde `requirements.txt`;
+5. `python -m pip check`;
+6. `python -m compileall -q src pruebas`;
+7. `python -m unittest discover -s pruebas -p "test_*.py"`.
+
+Exclusiones deliberadas de la primera iteración: Ruff, mypy, CodeQL, cobertura, OCR, IA y uso del PDF real en GitHub Actions. No se convertirán en gates hasta existir una configuración técnica validada.
+
+Estado: **auditoría cerrada; diseño CI v1 pendiente de aprobación humana**.
