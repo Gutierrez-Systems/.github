@@ -161,3 +161,16 @@ Implicación para la remediación:
 - primero se auditarán su estructura, comandos, pruebas existentes y requisitos de reproducibilidad, y luego se definirá su pipeline específico.
 
 Estado de clasificación: **producto activo confirmado**.
+
+### Hito 7 — Clasificación de `GS-ContractOps`
+
+Se deja explícito que `GS-ContractOps` es igualmente un **producto de Gutiérrez Systems en desarrollo activo**.
+
+Implicaciones:
+
+- su CI y Ruleset actuales gobiernan desarrollo activo y no mantenimiento pasivo;
+- la existencia de controles técnicos sobre `main` no implica cierre ni madurez final del producto;
+- las futuras decisiones de QA, seguridad, CI/CD y despliegue deben seguir su roadmap y estado real de evolución;
+- `GS-ContractOps` y `gs-catalogo-interactivo` deben tratarse como productos activos prioritarios dentro del frente de ingeniería.
+
+Estado de clasificación: **producto activo confirmado**.
