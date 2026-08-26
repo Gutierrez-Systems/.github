@@ -2,7 +2,7 @@
 
 ## Estado
 
-Auditoría técnica en modo solo lectura completada. No se ha creado workflow CI ni Ruleset específico.
+Auditoría técnica en modo solo lectura completada. No se ha creado todavía workflow CI permanente ni Ruleset específico.
 
 ## Hallazgos verificados
 
@@ -12,43 +12,79 @@ Auditoría técnica en modo solo lectura completada. No se ha creado workflow CI
 - `main` está protegida por el Ruleset corporativo base.
 - No existe Ruleset CI específico efectivo.
 - Stack: Next.js 16.3.0 + React 19.2.0 + TypeScript strict.
-- Scripts disponibles: `dev`, `dev:turbo`, `setup:google`, `build`, `start`, `lint`.
+- Scripts originales: `dev`, `dev:turbo`, `setup:google`, `build`, `start`, `lint`.
 - No existe script `test` ni suite de pruebas versionada observada.
-- No se observó `.github/workflows/` versionado.
-- No se observó lockfile en la raíz del repositorio.
-- Varias dependencias/devDependencies usan `latest`: `googleapis`, `@types/node`, `@types/react`, `@types/react-dom`, `eslint`, `typescript`.
-- El README indica instalación con `npm install`, por lo que el entorno actual no es determinista.
+- No existía `.github/workflows/` versionado antes de la remediación.
+- No existía lockfile en la raíz antes de la remediación.
+- Varias dependencias/devDependencies usaban `latest`: `googleapis`, `@types/node`, `@types/react`, `@types/react-dom`, `eslint`, `typescript`.
 - `.env.example` usa marcadores para secretos; las credenciales Google/Supabase se consumen server-only.
-- Los módulos de Google Drive y Supabase validan variables de entorno al ejecutar operaciones, no al importar el módulo, por lo que un build CI sin credenciales reales es viable en principio.
+- Los módulos de Google Drive y Supabase validan variables de entorno al ejecutar operaciones, no al importar el módulo, por lo que el build puede validarse sin credenciales reales.
 
-## Riesgo principal
+## Subhito A — Reproducibilidad
 
-No debe establecerse todavía un check obligatorio basado en una instalación no reproducible. Sin lockfile y con dependencias `latest`, dos ejecuciones pueden resolver versiones diferentes y producir resultados distintos.
+Aprobación humana recibida e implementación realizada en la rama:
 
-## Secuencia de remediación propuesta
+`chore/reproducibilidad-ci-20260825`
 
-### Subhito A — Reproducibilidad
+### Cambios permanentes preparados
 
-1. Sustituir dependencias `latest` por versiones concretas compatibles.
-2. Generar y versionar `package-lock.json`.
-3. Mantener `npm` como package manager actual.
-4. Añadir un script `typecheck` explícito (`tsc --noEmit`) para no depender implícitamente de `next build`.
+- `package.json`:
+  - `googleapis`: `176.0.0`;
+  - `@types/node`: `26.3.0`;
+  - `@types/react`: `19.2.18`;
+  - `@types/react-dom`: `19.2.5`;
+  - `eslint`: `9.39.5`;
+  - `typescript`: `6.0.3`;
+  - nuevo script `typecheck`: `tsc --noEmit`.
+- `package-lock.json` generado y versionado con lockfileVersion 3.
+- npm se mantiene como package manager.
 
-### Subhito B — CI v1
+### Validación técnica
 
-Una vez validada la reproducibilidad, crear workflow `CI` con un job estable, propuesto como `Validar Portal`, que ejecute:
+GitHub Actions se utilizó temporalmente para generar y validar el lockfile sin introducir secretos reales.
+
+Run de validación aislada: `32922999519`.
+
+Resultados:
+
+- generación de `package-lock.json`: success;
+- `npm ci`: success;
+- `npm run typecheck`: success;
+- `npm run build`: success;
+- npm reportó 0 vulnerabilidades en la resolución/instalación observada.
+
+El workflow auxiliar fue retirado después de la validación. El diff final contra `main` contiene únicamente:
+
+- `package.json`;
+- `package-lock.json`.
+
+### Hallazgo separado — ESLint
+
+Durante una validación previa se confirmó que `npm run lint` falla antes de analizar código porque el repositorio no contiene `eslint.config.(js|mjs|cjs)` y ESLint 9 exige configuración flat.
+
+Este hallazgo **no se corrige dentro del Subhito A** porque requiere una decisión/aprobación separada antes de construir el CI v1.
+
+### Estado del Pull Request
+
+La rama está lista para PR. Dos intentos de apertura mediante el conector de GitHub fueron bloqueados por el propio conector antes de ejecutarse. No se realizó merge ni modificación de `main`.
+
+Estado del Subhito A: **implementado y validado en rama; pendiente de apertura/merge humano del PR**.
+
+## Siguiente secuencia
+
+### Subhito B1 — Configuración ESLint
+
+Pendiente de aprobación posterior: incorporar una configuración ESLint compatible con Next.js 16 / ESLint 9 y validar `npm run lint`.
+
+### Subhito B2 — CI v1
+
+Después de cerrar B1, crear workflow `CI` con job estable `Validar Portal`:
 
 1. `npm ci`;
 2. `npm run lint`;
 3. `npm run typecheck`;
 4. `npm run build`.
 
-No se proponen todavía tests como gate porque no existe suite de pruebas versionada. Tampoco se usarán secretos reales en CI.
-
 ### Subhito C — Ruleset
 
 Solo después de que `Validar Portal` pase en PR y en `main`, crear un Ruleset específico que exija ese check y rama actualizada antes del merge.
-
-## Estado de decisión
-
-Auditoría cerrada. **Subhito A — Reproducibilidad pendiente de aprobación humana.**
