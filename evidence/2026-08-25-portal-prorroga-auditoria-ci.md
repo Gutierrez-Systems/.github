@@ -66,9 +66,21 @@ Este hallazgo **no se corrige dentro del Subhito A** porque requiere una decisi�
 
 ### Estado del Pull Request
 
-La rama está lista para PR. Dos intentos de apertura mediante el conector de GitHub fueron bloqueados por el propio conector antes de ejecutarse. No se realizó merge ni modificación de `main`.
+PR #9: `chore: hacer reproducibles las dependencias`.
 
-Estado del Subhito A: **implementado y validado en rama; pendiente de apertura/merge humano del PR**.
+Verificación realizada:
+
+- estado: `open`;
+- draft: `false`;
+- mergeable: `true`;
+- base: `main`;
+- head: `chore/reproducibilidad-ci-20260825`;
+- head SHA: `16566ebd355c9a5fcca09be9ce2310718f5387d9`;
+- archivos cambiados: únicamente `package.json` y `package-lock.json`;
+- alcance: conforme con el Subhito A aprobado;
+- merge: pendiente de control humano.
+
+Estado del Subhito A: **implementado, validado y abierto en PR #9; pendiente de merge humano**.
 
 ## Siguiente secuencia
 
