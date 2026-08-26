@@ -252,3 +252,24 @@ Configuración aprobada:
 - sin reglas redundantes de deletion, force push ni PR, ya cubiertas por el Ruleset corporativo base.
 
 Estado: **aprobado; pendiente de creación manual en GitHub y verificación posterior por API**.
+
+### Hito 11 — Activación verificada del Ruleset CI de `gs-catalogo-interactivo`
+
+El Ruleset organizacional `GS - CI obligatorio - catalogo interactivo` fue creado manualmente y activado tras revisión visual.
+
+Verificación final por API de GitHub:
+
+- Ruleset ID: `21519026`;
+- enforcement: `active`;
+- repositorio efectivo: `gs-catalogo-interactivo`;
+- target branch: `~DEFAULT_BRANCH`;
+- regla efectiva: únicamente `required_status_checks`;
+- required check: `Validar Python`;
+- `strict_required_status_checks_policy`: `true`;
+- `do_not_enforce_on_create`: `false`;
+- bypass: ninguno;
+- `current_user_can_bypass`: `never`.
+
+El Ruleset específico no duplica las reglas de deletion, force push o Pull Request del Ruleset corporativo base.
+
+Estado del hito: **cerrado y conforme al diseño corporativo**.
