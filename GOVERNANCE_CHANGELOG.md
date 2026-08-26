@@ -140,3 +140,24 @@ Corrección aprobada y verificada por API:
 - el Ruleset específico contiene únicamente `required_status_checks`.
 
 Estado del hito: **cerrado y conforme al diseño corporativo**.
+
+### Hito 6 — Clasificación de `gs-catalogo-interactivo`
+
+Se corrige explícitamente cualquier lectura que pudiera equiparar "sin CI versionado observado" con "repositorio secundario, histórico o inactivo".
+
+`gs-catalogo-interactivo` es un **producto de Gutiérrez Systems en desarrollo activo**.
+
+Evidencia y contexto:
+
+- Notion lo documenta como producto digital en construcción, con FASE 1D en curso;
+- repositorio dedicado: `Gutierrez-Systems/gs-catalogo-interactivo`;
+- repositorio privado, no archivado y con `main` como rama predeterminada;
+- la ausencia actual de CI versionado se interpreta como una **brecha de ingeniería activa a resolver**, no como una señal de inactividad.
+
+Implicación para la remediación:
+
+- `gs-catalogo-interactivo` pasa a prioridad alta para diseño e incorporación de CI compatible con su stack y flujo real de desarrollo;
+- no se le impondrá un check genérico inventado;
+- primero se auditarán su estructura, comandos, pruebas existentes y requisitos de reproducibilidad, y luego se definirá su pipeline específico.
+
+Estado de clasificación: **producto activo confirmado**.
