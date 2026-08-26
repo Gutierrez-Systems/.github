@@ -3,27 +3,26 @@
 ## Estado previo verificado
 
 - Repositorio: `Gutierrez-Systems/portal-prorroga-dosquebradas`.
-- Ruleset efectivo actual: `GS - Protección base de main - Corporativo` (ID `21484549`).
+- Ruleset corporativo base: `GS - Protección base de main - Corporativo` (ID `21484549`).
 - Enforcement: `active`.
 - Rama objetivo del Ruleset base: `~DEFAULT_BRANCH`.
 - Reglas del Ruleset base: `deletion`, `non_fast_forward` y `pull_request` con resolución de conversaciones.
 - Bypass: ninguno.
-- No existe todavía un Ruleset CI específico para este repositorio.
 
 ## Aprobación humana
 
 Aprobado el Subhito C para crear un Ruleset CI específico del Portal.
 
-## Configuración exacta aprobada
+## Configuración aprobada
 
-Nombre propuesto:
+Nombre:
 
 `GS - CI obligatorio - portal prorroga`
 
 Alcance:
 
 - source: organización `Gutierrez-Systems`;
-- repositorio seleccionado únicamente: `portal-prorroga-dosquebradas`;
+- repositorio: `portal-prorroga-dosquebradas`;
 - target: branch;
 - rama: `~DEFAULT_BRANCH`;
 - enforcement: `Active`;
@@ -31,10 +30,9 @@ Alcance:
 
 Reglas:
 
-- **única regla específica**: `required_status_checks`;
+- única regla específica: `required_status_checks`;
 - status check requerido: `Validar Portal`;
-- source/integration: `Any source` cuando la UI lo solicite;
-- `strict_required_status_checks_policy`: `true` (Require branches to be up to date before merging = ON);
+- `strict_required_status_checks_policy`: `true`;
 - `do_not_enforce_on_create`: `false`.
 
 No duplicar en este Ruleset:
@@ -44,10 +42,38 @@ No duplicar en este Ruleset:
 - requisito de Pull Request;
 - resolución de conversaciones.
 
-Estas protecciones ya están cubiertas por el Ruleset corporativo base ID `21484549`.
+Estas protecciones permanecen cubiertas por el Ruleset corporativo base ID `21484549`.
+
+## Verificación posterior a la creación manual
+
+Ruleset verificado mediante API:
+
+- ID: `21534293`;
+- nombre: `GS - CI obligatorio - portal prorroga`;
+- source type: `Organization`;
+- source: `Gutierrez-Systems`;
+- target: `branch`;
+- enforcement: `active`;
+- condición de rama: `~DEFAULT_BRANCH`;
+- reglas presentes: únicamente `required_status_checks`;
+- check exacto: `Validar Portal`;
+- `strict_required_status_checks_policy`: `true`;
+- `do_not_enforce_on_create`: `false`;
+- bypass actors: ninguno;
+- `current_user_can_bypass`: `never`.
+
+La lista efectiva del repositorio muestra ahora exactamente dos Rulesets aplicables:
+
+1. `GS - CI obligatorio - portal prorroga` (ID `21534293`);
+2. `GS - Protección base de main - Corporativo` (ID `21484549`).
+
+No se detectaron reglas redundantes en el Ruleset CI específico.
 
 ## Estado
 
-**Aprobado y pendiente de creación/activación manual en GitHub.**
+**Subhito C — CERRADO Y CONFORME.**
 
-La integración disponible permite verificar Rulesets mediante API, pero no crear/modificar Rulesets de organización. Después de la activación manual debe verificarse por API el ID, enforcement, alcance, check exacto y ausencia de reglas redundantes antes de cerrar el Subhito C.
+El Portal queda protegido por:
+
+- Ruleset corporativo base para integridad de `main` y flujo por Pull Request;
+- Ruleset CI específico que exige `Validar Portal` con rama actualizada antes del merge.
