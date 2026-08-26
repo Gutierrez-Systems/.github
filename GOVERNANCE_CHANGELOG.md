@@ -116,26 +116,27 @@ Corrección aprobada y verificada:
 
 Estado del hito: **cerrado y conforme al diseño corporativo**.
 
-### Hito 5 — Verificación inicial de `GS - CI obligatorio - document verification`
+### Hito 5 — `GS - CI obligatorio - document verification`
 
 Se creó y activó el Ruleset organizacional:
 
 `GS - CI obligatorio - document verification`
 
-Repositorio observado: `gs-document-verification`.
+Repositorio: `gs-document-verification`.
 
-La verificación por API detectó dos desviaciones antes de aceptar el hito:
+Verificación inicial:
 
-1. El segundo status check quedó configurado como `Bakend` en lugar del contexto real `Backend`.
-2. El criterio de ramas aparece con `include: []`, por lo que no se observa la rama predeterminada como objetivo efectivo.
+- el segundo status check había quedado como `Bakend` en lugar de `Backend`;
+- el criterio de ramas aparecía con `include: []`, sin rama objetivo efectiva.
 
-El Ruleset sí figura con `enforcement: active`, política strict y sin bypass, pero **no se considera conforme todavía**.
+Corrección aprobada y verificada por API:
 
-Acción requerida:
+- rama objetivo: `~DEFAULT_BRANCH`;
+- checks obligatorios: `Frontend` y `Backend`;
+- `strict_required_status_checks_policy`: `true`;
+- `do_not_enforce_on_create`: `false`;
+- bypass: ninguno;
+- enforcement: `active`;
+- el Ruleset específico contiene únicamente `required_status_checks`.
 
-- corregir `Bakend` → `Backend`;
-- configurar `Target branches` con `Include default branch`;
-- conservar únicamente `required_status_checks` con `Frontend` y `Backend`;
-- volver a verificar por API antes de cerrar el hito.
-
-Estado del hito: **activo, pero pendiente de corrección y verificación**.
+Estado del hito: **cerrado y conforme al diseño corporativo**.
